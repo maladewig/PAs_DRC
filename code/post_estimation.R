@@ -549,7 +549,7 @@ plots[[1]] + plots[[2]] + plots[[3]] + plots[[4]] + plot_annotations(level ="a")
 # APPENDIX ---------------------------------------------------------------------
 
 ## FIGURE A1: RDD plots with covariates ####
-distCells <- vect(here(dataInt,"distCells.shp"))
+distCells <- vect(here(data,"distCells.shp"))
 dist.df <- data.frame(values(distCells),geom(distCells))
 x <- dist.df[["dist2cutof"]]
 plots <- list()
@@ -620,8 +620,8 @@ robust.df <- PAs.df %>%
   mutate(border.PA = if_else(PA %in% c(12,22,31,34,53),1,0)) %>%
   mutate(nom_orig = if_else(PA == 43,"Rubi-Tele",nom_orig),nom_orig = if_else(PA == 14,"Salonga I",nom_orig),nom_orig = if_else(PA == 32,"Salonga II",nom_orig))
 
-save(robust.df,file=here(results,"PA.est.Rdata"))
-load(file=here(results,"PA.est.Rdata"))
+save(robust.df,file=here(results,"r6PA.est.Rdata"))
+load(file=here(results,"r6PA.est.Rdata"))
 
 p1 <-robust.df %>% 
   filter(PA_year > 2000,rel_time == -1 | year == 2022,border.PA == 0,!(nom_orig %in% c("Yangambi"))) %>%
@@ -665,7 +665,7 @@ PA.cats <- bpts.diff %>%
          Consolidated = round(Consolidated / N,2)) %>%
   filter(N>10)
 
-s2PAs <- vect(here(dataPrep,"s2PAsClean.shp"))
+s2PAs <- vect(here(data,"s2PAsClean.shp"))
 s2PAs$area <- terra::expanse(s2PAs,unit="ha")
 
 tabA1 <- as.data.frame(s2PAs) %>% 
@@ -875,7 +875,7 @@ t1 <- aggregate(t1,by="year.mine0")
 
 # Diff-in-Disc
 
-load(here(dataInt,"i1cCovPanel500.Rdata"))
+load(here(data,"i1cCovPanel500.Rdata"))
 
 DblMin <- DiffInDisc(depvar = "fcover",
                      treatvar = "year.mine0",
@@ -887,8 +887,8 @@ DblMin <- DiffInDisc(depvar = "fcover",
                      bandwidth = 20000)
 
 
-save(DblMin,file = here(results,"DblMinRob.Rdata"))
-load(file = here(results,"DblMinRob.Rdata"))
+save(DblMin,file = here(results,"r7DblMinRob.Rdata"))
+load(file = here(results,"r7DblMinRob.Rdata"))
 
 DblMin %>%
   mutate(est = if_else(rel_time==-1,0,est),
