@@ -1,2 +1,2 @@
-Data and code for replication of results for the paper "Increasing pressure on protected areas in the DR Congo over the last 20 years".
-Note that the GRD_estimation.R code was executed on a high peformance cluster due to its long run time, and requires large tif files that can be shared on reasonable request.
+Data and code for replication of results for the paper "Increasing pressure on protected areas in the DR Congo".
+Note that the file "estimate_boundary_points.R" was executed on a high performance cluster due to its high computational demands. Furthermore, source files used in the scripts "data_prep.R" and "estimate_boundary_points.R" were too large to upload here, but can be shared upon request.
